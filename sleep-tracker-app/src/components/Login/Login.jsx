@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
+
 
 async function loginUser(credentials){
   const response = await fetch('http://localhost:8080/login', {
@@ -18,6 +20,10 @@ async function loginUser(credentials){
   return data;
 }
 
+export default function Login( { setToken } ) {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 export default function Login( {setToken} ) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -26,21 +32,19 @@ export default function Login( {setToken} ) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setError(null);
-    setLoading(true);
 
-    try{
-      const token = await loginUser({
-        username,
-        password
-      });
-      setToken(token);
+    try {
+      const data = await loginUser({ username, password });
+
+      setToken(data.token ?? data);
+
+      navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'An error occurred during login');
-    } finally {
-      setLoading(false);
+      console.error(err);
+      alert('Login failed. Check backend + credentials.');
     }
   };
+
 
   return(
     <div className="login-wrapper">
@@ -64,9 +68,7 @@ export default function Login( {setToken} ) {
           />
       </label>
       <div>
-        <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Submit'}
-        </button>
+        <button type="submit">Start</button>
       </div>
     </form>
     </div>

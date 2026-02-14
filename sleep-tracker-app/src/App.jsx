@@ -1,27 +1,43 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './components/contexts/AuthContext.jsx';
+import './App.css';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Login/Login.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import useToken from './components/App/useToken.jsx';
 
 function App() {
-  const [token, setToken] = useState();
-
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  const { token, setToken, removeToken } = useToken();
 
   return (
+    <AuthProvider>
     <div className="wrapper">
       <h1>Application</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/preferences" element={<Preferences />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute token={token}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/preferences"
+            element={
+              <ProtectedRoute token={token}>
+                <Preferences />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
+    </AuthProvider>
   );
 }
 

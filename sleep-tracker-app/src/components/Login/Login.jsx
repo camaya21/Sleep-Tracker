@@ -18,7 +18,7 @@ async function loginUser(credentials){
   return data;
 }
 
-export default function Login( { setToken } ) {
+export default function Login( {setToken} ) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(null);

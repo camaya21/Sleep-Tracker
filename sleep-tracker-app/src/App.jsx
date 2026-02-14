@@ -6,22 +6,19 @@ import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Login/Login.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import useToken from './components/App/useToken.jsx';
 
 function App() {
-  const { token, setToken, removeToken } = useToken();
-
   return (
     <AuthProvider>
     <div className="wrapper">
       <h1>Application</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute token={token}>
+              <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -29,7 +26,7 @@ function App() {
           <Route
             path="/preferences"
             element={
-              <ProtectedRoute token={token}>
+              <ProtectedRoute>
                 <Preferences />
               </ProtectedRoute>
             }

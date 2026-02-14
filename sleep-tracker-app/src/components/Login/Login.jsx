@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
+
 
 async function loginUser(credentials){
   return fetch('http://localhost:8080/login', {
@@ -14,17 +16,25 @@ async function loginUser(credentials){
 }
 
 export default function Login( { setToken } ) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
-    setToken(token);
-  }
+
+    try {
+      const data = await loginUser({ username, password });
+
+      setToken(data.token ?? data);
+
+      navigate('/dashboard');
+    } catch (err) {
+      console.error(err);
+      alert('Login failed. Check backend + credentials.');
+    }
+  };
+
 
   return(
     <div className="login-wrapper">
@@ -39,7 +49,7 @@ export default function Login( { setToken } ) {
         <input type="password"onChange={e => setPassword(e.target.value)}/>
       </label>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit">Start</button>
       </div>
     </form>
     </div>

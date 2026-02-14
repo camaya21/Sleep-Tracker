@@ -5,30 +5,20 @@ import { useNavigate } from 'react-router-dom';
 
 
 async function loginUser(credentials){
-  const response = await fetch('http://localhost:8080/login', {
+  return fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(credentials)
-  });
-  if(!response.ok) {
-    throw new Error(`Login failed: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data;
+  })
+    .then(data => data.json())
 }
 
 export default function Login( { setToken } ) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-export default function Login( {setToken} ) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -49,23 +39,14 @@ export default function Login( {setToken} ) {
   return(
     <div className="login-wrapper">
       <h1>Please Log In</h1>
-      {error && <div className="error-message">{error}</div>}
     <form onSubmit={handleSubmit}>
       <label>
         <p>Username</p>
-        <input 
-          type="text" 
-          onChange={e => setUserName(e.target.value)}
-          disabled={loading}
-        />
+        <input type="text" onChange={e => setUserName(e.target.value)}/>
       </label>
       <label>
         <p>Password</p>
-        <input 
-          type="password"
-          onChange={e => setPassword(e.target.value)}
-          disabled={loading}
-          />
+        <input type="password"onChange={e => setPassword(e.target.value)}/>
       </label>
       <div>
         <button type="submit">Start</button>

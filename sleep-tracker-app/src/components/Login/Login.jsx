@@ -18,7 +18,7 @@ export default function Login( { setToken } ) {
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
-    e.preventDedault();
+    e.preventDefault();
     const token = await loginUser({
       username,
       password
@@ -29,7 +29,7 @@ export default function Login( { setToken } ) {
   return(
     <div className="login-wrapper">
       <h1>Please Log In</h1>
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         <p>Username</p>
         <input type="text" onChange={e => setUserName(e.target.value)}/>

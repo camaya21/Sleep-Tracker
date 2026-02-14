@@ -6,7 +6,7 @@ export default function Dashboard({ removeToken }) {
 
   const handleLogout = () => {
     removeToken();
-    navigate('/login');
+    navigate('./login');
   };
 
   return (

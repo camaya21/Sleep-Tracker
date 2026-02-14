@@ -34,6 +34,36 @@ function App() {
       </div>
       )}
     </BrowserRouter>
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+
+function App() {
+  return (
+    <AuthProvider>
+    <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/preferences"
+            element={
+              <ProtectedRoute>
+                <Preferences />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
+    </AuthProvider>
   );
 }
 

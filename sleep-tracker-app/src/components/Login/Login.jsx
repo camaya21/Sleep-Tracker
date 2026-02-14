@@ -24,6 +24,11 @@ export default function Login( { setToken } ) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+export default function Login( {setToken} ) {
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();

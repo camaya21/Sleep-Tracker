@@ -71,6 +71,7 @@ export default function Profile() {
         <label className="text-stuff">
           First Name:
           <input
+            className="input-field"
             type="text"
             name="first_name"
             value={form.first_name}
@@ -80,6 +81,7 @@ export default function Profile() {
 
           Last Name:
           <input
+            className="input-field"
             type="text"
             name="last_name"
             value={form.last_name}
@@ -89,6 +91,7 @@ export default function Profile() {
 
           Age:
           <input
+            className="input-field"
             type="number"
             name="age"
             value={form.age}
@@ -98,6 +101,7 @@ export default function Profile() {
 
           Weight:
           <input
+            className="input-field"
             type="number"
             step="0.1"
             name="weight"
@@ -116,7 +120,7 @@ export default function Profile() {
         </label>
 
         <br />
-        <button type="submit">Submit</button>
+        <button className="my-button" type="submit">Submit</button>
       </form>
 
       <Link to="/dashboard">

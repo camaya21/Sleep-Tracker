@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Login/Login.jsx';
+import Profile from './components/Profile/profile.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
 import axios from 'axios';
 
@@ -24,12 +25,10 @@ function App() {
       ) :(
 
       <div className="wrapper">
-        <h1>Application</h1>
-        <button onClick={apiCall}>Make API Call</button>
           <Routes>
-            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/preferences" element={<Preferences />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
       </div>
       )}

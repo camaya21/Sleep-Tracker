@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Dashboard({ removeToken }) {
+export default function Dashboard({ setUserId }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("userId");
-    navigate('/login');
+    setUserId(null);
+    navigate("/login");
   };
 
   return (

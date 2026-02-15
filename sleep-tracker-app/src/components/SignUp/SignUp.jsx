@@ -3,17 +3,6 @@ import PropTypes from 'prop-types';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 
-
-// async function signUpUser(credentials){
-//   return fetch('http://localhost:8080/register', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   })
-//     .then(data => data.json())
-// }
 async function signUpUser(payload) {
   const res = await fetch('http://localhost:8080/register', {
     method: 'POST',
@@ -29,7 +18,7 @@ async function signUpUser(payload) {
   return data;
 }
 
-export default function SignUp() {
+export default function SignUp({ setUserId }) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -39,11 +28,9 @@ export default function SignUp() {
     e.preventDefault();
 
     try {
-      const data = await signUpUser({ username, password, email });
-
-      localStorage.setItem('userId', data.userId);
-
-      navigate('/profile'); // go to onboarding page
+      const data = await signUpUser({ username, email, password });
+      setUserId(data.userId);
+      navigate("/profile");
     } catch (err) {
       alert(err.message);
     }

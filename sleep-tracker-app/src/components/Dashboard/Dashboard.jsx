@@ -16,6 +16,9 @@ export default function Dashboard({ removeToken }) {
       <Link to="/profile">
         <button>Edit Profile</button>
       </Link>
+      <Link to="/excel">
+        <button>upload excel file</button>
+      </Link>
     </div>
   );
 }

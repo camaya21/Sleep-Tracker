@@ -51,6 +51,7 @@ export default function Login({ setUserId }) {
           <input
             type="text"
             value={username}
+            className="input-field"
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
@@ -60,12 +61,13 @@ export default function Login({ setUserId }) {
           <input
             type="password"
             value={password}
+            className="input-field"
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         <br />
         <br />
-        <button type="submit">Login</button>
+        <button className="my-button" type="submit">Login</button>
       </form>
 
       <p>

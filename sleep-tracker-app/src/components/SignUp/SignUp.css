@@ -3,3 +3,9 @@
     flex-direction: column;
     align-items: center;
 }
+
+.input-field{
+    background-color: white;
+    color:black;
+    font-family: fantasy;
+}

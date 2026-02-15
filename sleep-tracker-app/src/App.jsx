@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Login/Login.jsx';
 import Profile from './components/Profile/profile.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
+import ExcelReader from './components/ReadExcelFileData/ReadExcel.jsx';
 import axios from 'axios';
 
 const apiCall = () => {
@@ -29,7 +30,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/preferences" element={<Preferences />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/excel" element={<ExcelReader />} />
           </Routes>
+
       </div>
       )}
     </BrowserRouter>

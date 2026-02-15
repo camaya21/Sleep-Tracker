@@ -5,13 +5,16 @@ export default function Dashboard({ removeToken }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeToken();
+    localStorage.removeItem("userId");
     navigate('/login');
   };
 
   return (
     <div>
       <h2>Dashboard</h2>
+      <p>Your BPM is:</p>
+      <p>You slept for:</p>
+      <p>You have been awake for:</p>
       <button onClick={handleLogout}>Logout</button>
       <Link to="/profile">
         <button>Edit Profile</button>

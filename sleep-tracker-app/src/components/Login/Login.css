@@ -5,6 +5,15 @@ body{
 
 }
 
+p{
+    font-family: cursive;
+}
+
+h1{
+    font-family: cursive;
+    font-size: 50pt;
+}
+
 .login-wrapper{
     display: flex;
     justify-content: center; /* Centers horizontally */

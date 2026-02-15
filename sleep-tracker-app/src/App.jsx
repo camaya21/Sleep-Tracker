@@ -36,7 +36,7 @@ function App() {
           element={userId ? <Preferences /> : <Navigate to="/login" replace />}
         />
            <Route path="/profile" element={<Profile />} />
-           <Route path="/excel" element={<ExcelReader />} />
+           {/*<Route path="/excel" element={<ExcelReader />} />*/}
 
         <Route path="/" element={<Navigate to={userId ? "/dashboard" : "/login"} replace />} />
       </Routes>

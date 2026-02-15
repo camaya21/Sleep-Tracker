@@ -82,10 +82,9 @@ export default function Profile() {
                 <option value="female">female</option>
                 <option value="male">male</option>
             </select>
+            <br />
+            <input className="my-button" type="submit" value="Submit" />
         </label>
-
-        <br />
-        <input className="my-button" type="submit" value="Submit" />
       </form>
 
       <Link to="/dashboard">

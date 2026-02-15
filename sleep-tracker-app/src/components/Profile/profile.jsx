@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './profile.css';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -64,32 +64,23 @@ export default function Profile() {
   return (
     <div>
       <h2>Profile</h2>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          First Name:
-          <input type="text" name="first_name" value={form.first_name} onChange={handleChange} />
-          <br />
-
-          Last Name:
-          <input type="text" name="last_name" value={form.last_name} onChange={handleChange} />
-          <br />
-
-          Age:
-          <input type="number" name="age" value={form.age} onChange={handleChange} />
-          <br />
-
-          Weight:
-          <input type="number" step="0.1" name="weight" value={form.weight} onChange={handleChange} />
-          <br />
-
-          Gender:
-          <select name="gender" value={form.gender} onChange={handleChange}>
-            <option value="female">female</option>
-            <option value="male">male</option>
-            <option value="nonbinary">nonbinary</option>
-            <option value="prefer_not_to_say">prefer not to say</option>
-          </select>
+      <form>
+        <label className="text-stuff">
+            First Name:
+            <input type="text" name="fname" />
+            <br />
+            Last Name:
+            <input type="text" name="lname" />
+            <br />
+            Height:
+            <input type="text" name="ft" /> ft
+            <input type="text" name="in" /> in
+            <br />
+            Gender:
+            <select>
+                <option value="female">female</option>
+                <option value="male">male</option>
+            </select>
         </label>
 
         <br />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './profile.css';
@@ -120,7 +120,7 @@ export default function Profile() {
       </form>
 
       <Link to="/dashboard">
-        <button>Dashboard</button>
+        <button className="my-button" >Dashboard</button>
       </Link>
     </div>
   );

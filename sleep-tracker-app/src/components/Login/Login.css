@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-wrapper{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+}

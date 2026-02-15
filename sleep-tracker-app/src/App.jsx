@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Login/Login.jsx';
-import Profile from './components/Profile/profile.jsx';
+import SignUp from './components/SignUp/SignUp.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
+import Profile from './components/Profile/profile.jsx';
 import ExcelReader from './components/ReadExcelFileData/ReadExcel.jsx';
 import axios from 'axios';
 
@@ -16,27 +18,31 @@ const apiCall = () => {
 }
 
 function App() {
-  const [token, setToken] = useState();
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
-  
   return (
     <BrowserRouter>
-      {!token ? (
-        <Login setToken={setToken} />
-      ) :(
+      <Routes>
 
-      <div className="wrapper">
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/preferences" element={<Preferences />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/excel" element={<ExcelReader />} />
-          </Routes>
+        <Route path="/login" element={<Login setUserId={setUserId} />} />
+        <Route path="/signup" element={<SignUp />} />
 
-      </div>
-      )}
+        <Route
+          path="/dashboard"
+          element={userId ? <Dashboard /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/preferences"
+          element={userId ? <Preferences /> : <Navigate to="/login" replace />}
+        />
+           <Route path="/profile" element={<Profile />} />
+           <Route path="/excel" element={<ExcelReader />} />
+
+        <Route path="/" element={<Navigate to={userId ? "/dashboard" : "/login"} replace />} />
+      </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+

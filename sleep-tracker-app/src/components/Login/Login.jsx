@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css'
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
+import Heart from '../decor/Heart';
 
 async function loginUser(credentials) {
   const res = await fetch('http://localhost:8080/login', {
@@ -24,6 +25,10 @@ export default function Login({ setUserId }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const hearts = Array.from({ length: 20 }, (_, i) => (
+    <Heart key={i} left={Math.random() * 100} duration={5 + Math.random() * 5} />
+  ));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,7 +47,9 @@ export default function Login({ setUserId }) {
   };
 
   return (
-    <div className="login-wrapper">
+    <div className="login-wrapper" style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+      {hearts}
+      
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>

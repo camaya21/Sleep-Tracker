@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './profile.css';
 
 export default function Profile() {
@@ -67,14 +68,14 @@ export default function Profile() {
       <form>
         <label className="text-stuff">
             First Name:
-            <input type="text" name="fname" />
+            <input className="input-field" type="text" name="fname" />
             <br />
             Last Name:
-            <input type="text" name="lname" />
+            <input className="input-field" type="text" name="lname" />
             <br />
             Height:
-            <input type="text" name="ft" /> ft
-            <input type="text" name="in" /> in
+            <input className="input-field" type="text" name="ft" /> ft
+            <input className="input-field" type="text" name="in" /> in
             <br />
             Gender:
             <select>
@@ -84,11 +85,11 @@ export default function Profile() {
         </label>
 
         <br />
-        <input type="submit" value="Submit" />
+        <input className="my-button" type="submit" value="Submit" />
       </form>
 
       <Link to="/dashboard">
-        <button>Dashboard</button>
+        <button className="my-button" >Dashboard</button>
       </Link>
     </div>
   );

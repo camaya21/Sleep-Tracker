@@ -3,11 +3,11 @@ import './Login.css'
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 
-async function loginUser(credentials) {
+async function loginUser(payload) {
   const res = await fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(credentials),
+    body: JSON.stringify(payload),
   });
 
   const data = await res.json();

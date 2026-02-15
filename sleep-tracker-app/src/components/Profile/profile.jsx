@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './profile.css';
 
 export default function Profile() {
@@ -9,7 +10,7 @@ export default function Profile() {
   const [form, setForm] = useState({
     first_name: '',
     last_name: '',
-    gender: 'female',
+    gender: '',
     age: '',
     weight: '',
   });
@@ -24,7 +25,7 @@ export default function Profile() {
         setForm({
           first_name: u.first_name || '',
           last_name: u.last_name || '',
-          gender: u.gender || 'female',
+          gender: u.gender || '',
           age: u.age ?? '',
           weight: u.weight ?? '',
         });
@@ -33,7 +34,8 @@ export default function Profile() {
   }, [userId]);
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -57,34 +59,64 @@ export default function Profile() {
       navigate('/dashboard');
     } catch (err) {
       console.error(err);
-      alert('Failed to save profile.');
+      alert(err?.response?.data?.message || 'Failed to save profile.');
     }
   };
 
   return (
     <div>
       <h2>Profile</h2>
-      <form>
+
+      <form onSubmit={handleSubmit}>
         <label className="text-stuff">
-            First Name:
-            <input type="text" name="fname" />
-            <br />
-            Last Name:
-            <input type="text" name="lname" />
-            <br />
-            Height:
-            <input type="text" name="ft" /> ft
-            <input type="text" name="in" /> in
-            <br />
-            Gender:
-            <select>
-                <option value="female">female</option>
-                <option value="male">male</option>
-            </select>
+          First Name:
+          <input
+            type="text"
+            name="first_name"
+            value={form.first_name}
+            onChange={handleChange}
+          />
+          <br />
+
+          Last Name:
+          <input
+            type="text"
+            name="last_name"
+            value={form.last_name}
+            onChange={handleChange}
+          />
+          <br />
+
+          Age:
+          <input
+            type="number"
+            name="age"
+            value={form.age}
+            onChange={handleChange}
+          />
+          <br />
+
+          Weight:
+          <input
+            type="number"
+            step="0.1"
+            name="weight"
+            value={form.weight}
+            onChange={handleChange}
+          />
+          <br />
+
+          Gender:
+          <select name="gender" value={form.gender} onChange={handleChange}>
+            <option value="female">female</option>
+            <option value="male">male</option>
+            <option value="non-binary">nonbinary</option>
+            <option value="choose not to answer">choose not to answer</option>
+          </select>
         </label>
 
         <br />
-        <input type="submit" value="Submit" />
+        <button type="submit">Submit</button>
       </form>
 
       <Link to="/dashboard">

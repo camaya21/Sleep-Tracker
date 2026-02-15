@@ -13,6 +13,10 @@ export default function Profile() {
             Last Name:
             <input type="text" name="lname" />
             <br />
+            Height:
+            <input type="text" name="ft" /> ft
+            <input type="text" name="in" /> in
+            <br />
             Gender:
             <select>
                 <option value="female">female</option>

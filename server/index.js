@@ -66,24 +66,26 @@ app.post('/login', async (req, res) => {
   });
   
   app.get('/users/:id', async (req, res) => {
-    try {
-      const userId = req.params.id;
-  
-      const [rows] = await pool.query(
-        'SELECT id, username, email, first_name, last_name, weight, age, gender, created_at FROM users WHERE id = ?',
-        [userId]
-      );
-  
-      if (rows.length === 0) return res.status(404).json({ message: 'User not found' });
-  
-      return res.json(rows[0]);
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ message: 'Server error' });
-    }
+    const [rows] = await pool.query(
+      'SELECT id, username, email, first_name, last_name, weight, age, gender FROM users WHERE id = ?',
+      [req.params.id]
+    );
+    if (!rows.length) return res.status(404).json({ message: 'User not found' });
+    res.json(rows[0]);
   });
   
+  app.put('/users/:id', async (req, res) => {
+    const { first_name, last_name, gender, age, weight } = req.body;
   
+    await pool.query(
+      `UPDATE users
+       SET first_name = ?, last_name = ?, gender = ?, age = ?, weight = ?
+       WHERE id = ?`,
+      [first_name || null, last_name || null, gender || null, age ?? null, weight ?? null, req.params.id]
+    );
+  
+    res.json({ message: 'Profile updated' });
+  });
 app.listen(8080, () => {
     console.log('server listening on port 8080');
 });

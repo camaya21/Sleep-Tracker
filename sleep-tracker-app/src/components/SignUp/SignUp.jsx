@@ -58,18 +58,19 @@ export default function SignUp() {
     <form onSubmit={handleSubmit}>
       <label>
         <p>Username</p>
-        <input type="text" onChange={e => setUserName(e.target.value)}/>
+        <input className="input-field" type="text" onChange={e => setUserName(e.target.value)}/>
       </label>
       <label>
         <p>Email</p>
-        <input value={email} type="email" onChange={(e) => setEmail(e.target.value)} />
+        <input className="input-field" value={email} type="email" onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label>
         <p>Password</p>
-        <input type="password"onChange={e => setPassword(e.target.value)}/>
+        <input className="input-field" type="password"onChange={e => setPassword(e.target.value)}/>
       </label>
       <div>
-        <button type="submit">Start</button>
+        <br />
+        <button className="my-button" type="submit">Start</button>
       </div>
     </form>
     </div>

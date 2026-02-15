@@ -19,3 +19,14 @@ h1{
     justify-content: center; /* Centers horizontally */
     align-items: center;
 }
+
+.input-field{
+    background-color: white;
+    color:black;
+    font-family: fantasy;
+}
+
+.my-button{
+    background-color: rgb(197, 141, 141);
+    font-family: cursive;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css'
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -62,7 +63,8 @@ export default function Login({ setUserId }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-
+        <br />
+        <br />
         <button type="submit">Login</button>
       </form>
 

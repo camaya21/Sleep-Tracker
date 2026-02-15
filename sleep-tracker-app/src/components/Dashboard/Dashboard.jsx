@@ -19,9 +19,9 @@ export default function Dashboard({ setUserId }) {
       <Link to="/profile">
         <button className="my-button">Edit Profile</button>
       </Link>
-      <Link to="/excel">
+      {/*<Link to="/excel">
         <button className="my-button"> upload excel file</button>
-      </Link>
+      </Link>*/}
     </div>
   );
 }

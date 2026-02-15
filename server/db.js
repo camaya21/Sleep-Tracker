@@ -2,11 +2,9 @@ const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
   host: '127.0.0.1',
-  user: 'sleepapp',          // use the user you created (recommended)
-  password: 'StrongPass123!',// your password
+  user: 'root',              // or the mysql user you created
+  password: 'GMU Sleep-Tracker', // put your mysql password here
   database: 'sleep_tracker',
-  waitForConnections: true,
-  connectionLimit: 10,
 });
 
 module.exports = pool;

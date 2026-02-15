@@ -43,12 +43,12 @@ export default function SignUp() {
 
       localStorage.setItem('userId', data.userId);
 
-      navigate('/questionnaire'); // go to onboarding page
+      navigate('/profile'); // go to onboarding page
     } catch (err) {
       alert(err.message);
     }
   };
-}
+
 
 
 
@@ -74,7 +74,7 @@ export default function SignUp() {
     </form>
     </div>
   )
-
+}
 
 SignUp.propTypes = {
   setUserId: PropTypes.func.isRequired

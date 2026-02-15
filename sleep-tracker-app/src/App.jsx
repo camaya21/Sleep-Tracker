@@ -7,7 +7,6 @@ import Login from './components/Login/Login.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Preferences from './components/Preferences/Preferences.jsx';
 import Profile from './components/Profile/profile.jsx';
-import Preferences from './components/Preferences/Preferences.jsx';
 import ExcelReader from './components/ReadExcelFileData/ReadExcel.jsx';
 import axios from 'axios';
 
